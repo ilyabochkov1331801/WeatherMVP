@@ -7,14 +7,17 @@
 //
 
 import CoreLocation
+import UIKit
 
 class NetworkService: NetworkServiceProtocol {
     
-    private let stringURL = "https://api.openweathermap.org/data/2.5/forecast?"
+    private let updateForecastStringURL = "https://api.openweathermap.org/data/2.5/forecast?"
+    private let iconStringURL = "http://openweathermap.org/img/wn/"
+    private let iconStringURLPrefix = "@2x.png"
     private let apiKey = "2a6938098eb62bba02708327e9d0194e"
     
     func updateForecast(with coordinates: CLLocationCoordinate2D, completion: @escaping (Result<ApiResponse, Error>) -> ()) {
-        guard var urlComponents = URLComponents(string: stringURL) else {
+        guard var urlComponents = URLComponents(string: updateForecastStringURL) else {
             return
         }
         urlComponents.queryItems = [
@@ -40,6 +43,21 @@ class NetworkService: NetworkServiceProtocol {
             } catch {
                 completion(.failure(error))
             }
+        }
+    }
+    
+    func getIcon(with iconName: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
+        guard let iconURL = URL(string: iconStringURL + iconName + "@2x.png") else {
+            return
+        }
+        do {
+            let data = try Data(contentsOf: iconURL)
+            guard let image = UIImage(data: data) else {
+                return
+            }
+            completion(.success(image))
+        } catch {
+            completion(.failure(error))
         }
     }
 }

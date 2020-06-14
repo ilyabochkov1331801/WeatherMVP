@@ -7,7 +7,9 @@
 //
 
 import CoreLocation
+import UIKit
 
 protocol NetworkServiceProtocol {
     func updateForecast(with coordinates: CLLocationCoordinate2D, completion: @escaping (Result<ApiResponse, Error>) -> ())
+    func getIcon(with iconName: String, completion: @escaping (Result<UIImage, Error>) -> ())
 }
