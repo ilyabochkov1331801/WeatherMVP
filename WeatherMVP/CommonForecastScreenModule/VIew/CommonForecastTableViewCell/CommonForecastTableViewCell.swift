@@ -10,18 +10,28 @@ import UIKit
 
 class CommonForecastTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    func configure(with detailForecast: DetailForecast) {
-        
+    func configure(with detailForecast: DetailForecast?) {
+        timeLabel.text = detailForecast?.dt_txt
+        temperatureLabel.text = convertTemperature(from: detailForecast?.main.temp)
+        descriptionLabel?.text = detailForecast?.weather.first?.description
+    }
+    
+    func convertTemperature(from kelvin: Double?) -> String? {
+        guard let kelvin = kelvin else {
+            return nil
+        }
+        return String(format:"%.1f", kelvin - 273.1) + " ℃"
     }
 }

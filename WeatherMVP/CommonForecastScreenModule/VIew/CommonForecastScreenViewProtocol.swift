@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CommonForecastScreenViewProtocol: class {
-    func set(cityName: String)
+    func set(city: City)
     func successUpdate()
     func failureUpdate(with error: Error)
 }

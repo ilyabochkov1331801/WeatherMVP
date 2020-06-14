@@ -43,7 +43,7 @@ class NetworkService: NetworkServiceProtocol {
             } catch {
                 completion(.failure(error))
             }
-        }
+        }.resume()
     }
     
     func getIcon(with iconName: String, completion: @escaping (Result<UIImage, Error>) -> ()) {

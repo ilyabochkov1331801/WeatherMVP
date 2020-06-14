@@ -9,10 +9,10 @@
 import CoreLocation
 
 protocol CommonForecastScreenPresenterProtocol {
-    var apiResponse: ApiResponse? { get }
+    var detailForecastList: Array<DetailForecast>? { get }
     var router: RouterProtocol { get }
     init(view: CommonForecastScreenViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
-    func updateForecast(with coordinates: CLLocationCoordinate2D)
+    func updateForecast(with coordinates: CLLocationCoordinate2D?)
     func updateForecast(with cityName: String)
-    func show(detailForecast: DetailForecast)
+    func show(detailForecast: DetailForecast?)
 }
