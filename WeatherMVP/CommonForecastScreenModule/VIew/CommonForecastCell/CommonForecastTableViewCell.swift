@@ -24,14 +24,7 @@ class CommonForecastTableViewCell: UITableViewCell {
     
     func configure(with detailForecast: DetailForecast?) {
         timeLabel.text = detailForecast?.dt_txt
-        temperatureLabel.text = convertTemperature(from: detailForecast?.main.temp)
+        temperatureLabel.text = TemperatureConverterService().convertTemperature(kelvin: detailForecast?.main.temp)
         descriptionLabel?.text = detailForecast?.weather.first?.description
-    }
-    
-    func convertTemperature(from kelvin: Double?) -> String? {
-        guard let kelvin = kelvin else {
-            return nil
-        }
-        return String(format:"%.1f", kelvin - 273.1) + " ℃"
     }
 }

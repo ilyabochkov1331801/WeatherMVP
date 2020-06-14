@@ -16,6 +16,7 @@ class CommonForecastScreenTableViewController: UITableViewController {
     
     var presenter: CommonForecastScreenPresenterProtocol?
     private var locationManager: CLLocationManager!
+    private var customNavigationItemView: CustomNavigationItemView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,14 @@ class CommonForecastScreenTableViewController: UITableViewController {
         locationManager.requestLocation()
         
         self.clearsSelectionOnViewWillAppear = true
+        
+        customNavigationItemView = CustomNavigationItemView()
+        customNavigationItemView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)
+        let navigationItemTupGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navigationItemTupped))
+        navigationItemTupGestureRecognizer.delegate = self
+        customNavigationItemView.addGestureRecognizer(navigationItemTupGestureRecognizer)
+        navigationItem.titleView = customNavigationItemView
+
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,12 +67,36 @@ class CommonForecastScreenTableViewController: UITableViewController {
         present(errorAlert, animated: true)
     }
     
+    private func configureCityNameAlert() {
+        let cityNameAlert = UIAlertController(title: nil, message: "Enter city name", preferredStyle: .alert)
+        let cityNameAlertCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cityNameAlertReloadAction = UIAlertAction(title: "Reload", style: .default) {
+            [weak self] (_) in
+            guard let self = self else {
+                return
+            }
+            guard let cityName = cityNameAlert.textFields?.first?.text, cityName != "" else {
+                return
+            }
+            self.customNavigationItemView.startUpdating()
+            self.presenter?.updateForecast(with: cityName)
+        }
+        cityNameAlert.addTextField(configurationHandler: nil)
+        cityNameAlert.addAction(cityNameAlertCancelAction)
+        cityNameAlert.addAction(cityNameAlertReloadAction)
+        present(cityNameAlert, animated: true)
+    }
+    
+    @objc func navigationItemTupped() {
+        configureCityNameAlert()
+    }
+    
 }
 
 extension CommonForecastScreenTableViewController: CommonForecastScreenViewProtocol {
     
     func set(city: City) {
-        
+        customNavigationItemView.updateData(with: city)
     }
     
     func successUpdate() {
@@ -77,10 +110,15 @@ extension CommonForecastScreenTableViewController: CommonForecastScreenViewProto
 
 extension CommonForecastScreenTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        customNavigationItemView.startUpdating()
         presenter?.updateForecast(with: locationManager.location?.coordinate)
     }
      
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         configureAlert(with: error)
     }
+}
+
+extension CommonForecastScreenTableViewController: UIGestureRecognizerDelegate {
+    
 }

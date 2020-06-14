@@ -35,6 +35,10 @@
 		EA59963B24963F34000A2C45 /* AssemblyBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA59963A24963F34000A2C45 /* AssemblyBuilderProtocol.swift */; };
 		EA59963D24964102000A2C45 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA59963C24964102000A2C45 /* Router.swift */; };
 		EA59963F249642A8000A2C45 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA59963E249642A8000A2C45 /* AssemblyBuilder.swift */; };
+		EA59964524966488000A2C45 /* CustomNavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA59964324966488000A2C45 /* CustomNavigationItemView.swift */; };
+		EA59964624966488000A2C45 /* CustomNavigationItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59964424966488000A2C45 /* CustomNavigationItemView.xib */; };
+		EA59964A249683DC000A2C45 /* TemperatureConverterServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA599649249683DC000A2C45 /* TemperatureConverterServiceProtocol.swift */; };
+		EA59964C2496841E000A2C45 /* TemperatureConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA59964B2496841E000A2C45 /* TemperatureConverterService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,10 @@
 		EA59963A24963F34000A2C45 /* AssemblyBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilderProtocol.swift; sourceTree = "<group>"; };
 		EA59963C24964102000A2C45 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		EA59963E249642A8000A2C45 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
+		EA59964324966488000A2C45 /* CustomNavigationItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationItemView.swift; sourceTree = "<group>"; };
+		EA59964424966488000A2C45 /* CustomNavigationItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNavigationItemView.xib; sourceTree = "<group>"; };
+		EA599649249683DC000A2C45 /* TemperatureConverterServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterServiceProtocol.swift; sourceTree = "<group>"; };
+		EA59964B2496841E000A2C45 /* TemperatureConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +153,8 @@
 		EA59960724961F7A000A2C45 /* VIew */ = {
 			isa = PBXGroup;
 			children = (
-				EA59963324963C2B000A2C45 /* CommonForecastTableViewCell */,
+				EA59964224966432000A2C45 /* CustomNavigationItem */,
+				EA59963324963C2B000A2C45 /* CommonForecastCell */,
 				EA59960424961F3B000A2C45 /* CommonForecastTableViewController.swift */,
 				EA59960B24962073000A2C45 /* CommonForecastScreenViewProtocol.swift */,
 			);
@@ -164,8 +173,8 @@
 		EA59960F2496238C000A2C45 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				EA599610249623AE000A2C45 /* NetworkServiceProtocol.swift */,
-				EA599612249629ED000A2C45 /* NetworkService.swift */,
+				EA599648249683AD000A2C45 /* TemperatureConverterService */,
+				EA599647249683A1000A2C45 /* NetworkService */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -210,13 +219,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EA59963324963C2B000A2C45 /* CommonForecastTableViewCell */ = {
+		EA59963324963C2B000A2C45 /* CommonForecastCell */ = {
 			isa = PBXGroup;
 			children = (
 				EA59963424963C5C000A2C45 /* CommonForecastTableViewCell.swift */,
 				EA59963524963C5C000A2C45 /* CommonForecastTableViewCell.xib */,
 			);
-			path = CommonForecastTableViewCell;
+			path = CommonForecastCell;
 			sourceTree = "<group>";
 		};
 		EA599640249642DB000A2C45 /* AssemblyBuilder */ = {
@@ -235,6 +244,33 @@
 				EA59963C24964102000A2C45 /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		EA59964224966432000A2C45 /* CustomNavigationItem */ = {
+			isa = PBXGroup;
+			children = (
+				EA59964324966488000A2C45 /* CustomNavigationItemView.swift */,
+				EA59964424966488000A2C45 /* CustomNavigationItemView.xib */,
+			);
+			path = CustomNavigationItem;
+			sourceTree = "<group>";
+		};
+		EA599647249683A1000A2C45 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				EA599610249623AE000A2C45 /* NetworkServiceProtocol.swift */,
+				EA599612249629ED000A2C45 /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		EA599648249683AD000A2C45 /* TemperatureConverterService */ = {
+			isa = PBXGroup;
+			children = (
+				EA599649249683DC000A2C45 /* TemperatureConverterServiceProtocol.swift */,
+				EA59964B2496841E000A2C45 /* TemperatureConverterService.swift */,
+			);
+			path = TemperatureConverterService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +333,7 @@
 			files = (
 				EA59962624963758000A2C45 /* DetailForecastScreenViewController.xib in Resources */,
 				EA59963724963C5C000A2C45 /* CommonForecastTableViewCell.xib in Resources */,
+				EA59964624966488000A2C45 /* CustomNavigationItemView.xib in Resources */,
 				EA5995FB24961D8D000A2C45 /* LaunchScreen.storyboard in Resources */,
 				EA5995F824961D8D000A2C45 /* Assets.xcassets in Resources */,
 				EA5995F624961D89000A2C45 /* Main.storyboard in Resources */,
@@ -311,10 +348,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA59963D24964102000A2C45 /* Router.swift in Sources */,
+				EA59964C2496841E000A2C45 /* TemperatureConverterService.swift in Sources */,
 				EA59960524961F3B000A2C45 /* CommonForecastTableViewController.swift in Sources */,
 				EA59960C24962073000A2C45 /* CommonForecastScreenViewProtocol.swift in Sources */,
 				EA59963924963EAC000A2C45 /* RouterProtocol.swift in Sources */,
 				EA599630249639D0000A2C45 /* City.swift in Sources */,
+				EA59964A249683DC000A2C45 /* TemperatureConverterServiceProtocol.swift in Sources */,
 				EA599613249629ED000A2C45 /* NetworkService.swift in Sources */,
 				EA59961B249631D2000A2C45 /* DetailForecst.swift in Sources */,
 				EA5996222496360C000A2C45 /* DetailForecastScreenPresenter.swift in Sources */,
@@ -332,6 +371,7 @@
 				EA59961524962C15000A2C45 /* CommonForecastScreenPresenter.swift in Sources */,
 				EA5995EF24961D89000A2C45 /* AppDelegate.swift in Sources */,
 				EA599620249632E6000A2C45 /* DetailForecastScreenPresenterProtocol.swift in Sources */,
+				EA59964524966488000A2C45 /* CustomNavigationItemView.swift in Sources */,
 				EA5995F124961D89000A2C45 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@ import UIKit
 class NetworkService: NetworkServiceProtocol {
     
     private let updateForecastStringURL = "https://api.openweathermap.org/data/2.5/forecast?"
-    private let iconStringURL = "http://openweathermap.org/img/wn/"
+    private let iconStringURL = "https://openweathermap.org/img/wn/"
     private let iconStringURLPrefix = "@2x.png"
     private let apiKey = "2a6938098eb62bba02708327e9d0194e"
     

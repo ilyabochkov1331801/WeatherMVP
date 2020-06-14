@@ -10,12 +10,18 @@ import UIKit
 
 class DetailForecastScreenViewController: UIViewController {
     
+    private let stringFormat = "%.1f"
+    
     var presenter: DetailForecastScreenPresenterProtocol?
+    
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        presenter?.updateForecast()
     }
 
 
@@ -33,10 +39,15 @@ class DetailForecastScreenViewController: UIViewController {
 
 extension DetailForecastScreenViewController: DetailForecastScreenViewProtocol {
     func set(detailForecast: DetailForecast) {
-        
+        windLabel.text = String(format: stringFormat, detailForecast.wind.speed)
+        temperatureLabel.text = (TemperatureConverterService().convertTemperature(kelvin: detailForecast.main.temp) ?? "") + " / " + (TemperatureConverterService().convertTemperature(kelvin: detailForecast.main.feels_like) ?? "")
+        guard let iconId = detailForecast.weather.first?.icon else {
+            return
+        }
+        presenter?.updateIcon(with: iconId)
     }
     
     func set(picture: UIImage) {
-        
+        iconImageView.image = picture
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 class DetailForecastScreenPresenter: DetailForecastScreenPresenterProtocol {
-    
+
     var router: RouterProtocol
     var detailForecast: DetailForecast
     let view: DetailForecastScreenViewProtocol
@@ -22,7 +22,24 @@ class DetailForecastScreenPresenter: DetailForecastScreenPresenterProtocol {
         self.networkService = networkService
     }
     
+    func updateIcon(with id: String) {
+        networkService.getIcon(with: id) {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
+                    self.view.set(picture: image)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     func updateForecast() {
-        
+        view.set(detailForecast: detailForecast)
     }
 }

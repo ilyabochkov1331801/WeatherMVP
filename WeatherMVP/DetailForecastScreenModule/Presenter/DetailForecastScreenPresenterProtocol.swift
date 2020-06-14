@@ -11,5 +11,6 @@ import Foundation
 protocol DetailForecastScreenPresenterProtocol: class {
     var router: RouterProtocol { get }
     init(view: DetailForecastScreenViewProtocol, detailForecast: DetailForecast, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    func updateIcon(with id: String)
     func updateForecast()
 }
